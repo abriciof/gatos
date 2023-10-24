@@ -7,13 +7,13 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def hello_world():
-    rt = requests.get('https://aws.random.cat/meow')
-    dados = rt.json()
-    cat = dados['file']
+    response = requests.get('https://cataas.com/cat?json=true')
+    dados = response.json()
+    cat = dados['_id']
+    cat = f'https://cataas.com/cat?_id={cat}'
     return render_template('index.html', gato=cat)
     
 
 
 if __name__ == '__main__':
-    app.secret_key = 'ItIsASecret'
-    app.run( debug=True)
+    app.run(debug=True)
